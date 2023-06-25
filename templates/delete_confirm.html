@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Delete Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .confirmation-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .btn-wrapper {
+            margin-top: 10px;
+        }
+
+        .btn-wrapper button,
+        .btn-wrapper a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-wrapper button:hover,
+        .btn-wrapper a:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-wrapper button:active,
+        .btn-wrapper a:active {
+            background-color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Delete Confirmation</h1>
+
+    <div class="confirmation-box">
+        <p>Are you sure you want to delete the user <strong>{{ user.username }}</strong>?</p>
+
+        <div class="btn-wrapper">
+            <form action="{% url 'user_delete' user_id=user.id role=role %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+            <a href="{% url 'user_search' %}" style="margin-top: 10px;">Cancel</a>
+        </div>
+    </div>
+</body>
+</html>
